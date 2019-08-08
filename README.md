@@ -131,6 +131,88 @@ cat 	1. 查看文件的内容
 	
 	cat 1.txt 2.txt > 3.txt
 
+
+
 grep :从指定的文件中搜索需要的内容
+
+	
+	-n:显示行号
+	
+	-i:不区分大小写
+	
+	-v:取反，即不包含需要的内容的行
+	
+	^a	行首,搜寻以 m 开头的行；grep -n '^a' 1.txt
+	ke$	行尾,搜寻以 ke 结束的行；grep -n 'ke$' 1.txt
+	[Ss]igna[Ll]	匹配 [] 里中一系列字符中的一个；搜寻匹配单词signal、signaL、Signal、SignaL的行；
+			eg:  grep -n 	'[Ss]igna[Ll]' 1.txt
+	.	(点)匹配一个非换行符的字符；匹配 e 和 e 之间有任意一个字符，可以匹配 eee，eae，eve，但是不匹配 ee，eaae；
+		grep -n 'e.e' 1.txt
+
+
+查找文件：
+
+find 路径 -name '*.t?t'
+
+
+	通配符，注意点：
+	[a-zA-Z0-9]*.txt
+
+
+			find ./ -name test.sh	查找当前目录下所有名为test.sh的文件
+			find ./ -name '*.sh'		查找当前目录下所有后缀为.sh的文件
+			find ./ -name "[A-Z]*"	查找当前目录下所有以大写字母开头的文件
+			find /tmp -size 2M		查找在/tmp 目录下等于2M的文件
+			find /tmp -size +2M	查找在/tmp 目录下大于2M的文件
+			find /tmp -size -2M	查找在/tmp 目录下小于2M的文件
+			find ./ -size +4k -size -5M	查找当前目录下大于4k，小于5M的文件
+			find ./ -perm 0777		查找当前目录下权限为 777 的文件或目录
+
+复制文件：
+
+cp a b 将a文件夹整体复制到b文件夹下
+	
+cp a/* b 将a文件夹下的所有内容赋值到b文件夹下
+	-a	该选项通常在复制目录时使用，它保留链接、文件属性，并递归地复制目录，简单而言，保持文件原有属性。
+	-f	已经存在的目标文件而不提示
+	-i	交互式复制，在覆盖目标文件之前将给出提示要求用户确认
+	-r	若给出的源文件是目录文件，则cp将递归复制该目录下的所有子目录和文件，目标文件必须为一个目录名。
+	-v	显示拷贝进度
+
+
+
+剪切文件：
+	
+mv a b 将a文件夹整体移动（剪切）到b文件夹下
+
+
+
+
+
+tar -cvf xxx.tar * 打包
+
+gzip xxx.tar 压缩
+
+
+gzip -d xxx.tar.gz
+  解压
+tar -xvf xxx.tar
+
+
+
+常见的压缩解压方式：
+
+
+tar -zcvf xxx.tar.gz *
+
+tar -zxvf xxx.tar.gz
+
+
+
+tar -jcvf xxx.tar.bz2 *
+
+tar -jxvf xxx.tar.bz2
+
+
 
 	
