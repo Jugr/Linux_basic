@@ -215,4 +215,131 @@ tar -jxvf xxx.tar.bz2
 
 
 
+压缩文件：zip [-r] 目标文件(没有扩展名) 源文件
+解压文件：unzip -d 解压后目录文件 压缩文件
+
+linux：多用户多任务的OS
+
+
+ifconfig :查看ip地址
+
+	
+WINDOWS中使用ipconfig
+
+
+
+ping：
+
+	ping 192.168.17.76 测试网络连接是否正常
+
+
+
+
+ssh:远程登录
+
+	
+ssh python@192.168.17.76
+	
+ssh 用户名@ip
+
+
+
+whoami：查看当前用户名
+
+
+who:查看当前登录的用户信息
+exit:
+如果是图形界面，退出当前终端；
+如果是使用ssh远程登录，退出登陆账户；
+如果是切换后的登陆用户，退出则返回上一个登陆账号
+
+Ctrl+a快速跳到行头
+Ctrl+e快速跳到行尾
+
+useradd [新的用户名] -m -d /home/新用户名 -g 组名
+
+
+passwd [用户名
+]
+
+
+su [需要切换的用户名]
+su - [需要切换的用户名]    切换用户后，还会主动跳转到该用户的家目录
+
+
+
+python---->laowang----->python
+
+sudo 
+
+
+当需要超级管理员的权限时需要添加，并且在命令行的最前面，后面需要空格
+sudo passwd laowang
+
+
+sudo -s 直接切换到root用户
+
+
+
+groupadd YYY 添加一个YYY用户组
+
+groupdel YYY 删除一个组，注意需要sudo
+
+ 
+
+cat /etc/group
+groups laowang表示：查看laowang所属的所有用户组
+
+
+usermod -g YYY laowang 把老王添加到YYY组里面
+
+
+usermod -a -G XXX laowang 把老王添加到XXX组里面
+
+	
+	-g 和 -G，-g指定的是默认的组
+
+
+
+useradd创建的新用户没有sudo，或者切换到root的权限，需要把这个用户添加到adm、sudo组里面才可以
+
+
+
+
+chmod 修改文件的权限
+
+	
+u：拥有者
+	
+g:同组者
+	
+o：其他人
+	
+a:所有，即u、g、o
+
+	
+
++ 添加权限
+	
+- 去除权限
+	
+= 设定权限
+
+
+	
+r:读------>对应的数字是4
+	
+w：写------>对应的数字是2
+	
+x：执行------>对应的数字是1
+eg: chmod 761 1.py  ---->  -rwxrw---x 1 hzy hzy 0 Aug  9 14:01 1.py
+
+
+
+chmod 777 文件夹，只会修改文件夹的权限为777 ，不会修改里面文件的权限
+
+	
+-R 会修改文件夹里面所有的文件、文件夹的权限（递归）
+
+
 	
