@@ -249,9 +249,9 @@ whoami：查看当前用户名
 
 who:查看当前登录的用户信息
 exit:
-如果是图形界面，退出当前终端；
-如果是使用ssh远程登录，退出登陆账户；
-如果是切换后的登陆用户，退出则返回上一个登陆账号
+	如果是图形界面，退出当前终端；
+	如果是使用ssh远程登录，退出登陆账户；
+	如果是切换后的登陆用户，退出则返回上一个登陆账号
 
 Ctrl+a快速跳到行头
 Ctrl+e快速跳到行尾
@@ -309,37 +309,79 @@ useradd创建的新用户没有sudo，或者切换到root的权限，需要把�
 chmod 修改文件的权限
 
 	
-u：拥有者
+	u：拥有者
 	
-g:同组者
+	g:同组者
 	
-o：其他人
+	o：其他人
 	
-a:所有，即u、g、o
+	a:所有，即u、g、o
 
 	
 
-+ 添加权限
+	+ 添加权限
+		
+	- 去除权限
 	
-- 去除权限
-	
-= 设定权限
+	= 设定权限
 
 
 	
-r:读------>对应的数字是4
-	
-w：写------>对应的数字是2
-	
-x：执行------>对应的数字是1
-eg: chmod 761 1.py  ---->  -rwxrw---x 1 hzy hzy 0 Aug  9 14:01 1.py
+	r:读------>对应的数字是4
+
+	w：写------>对应的数字是2
+
+	x：执行------>对应的数字是1
+	eg: chmod 761 1.py  ---->  -rwxrw---x 1 hzy hzy 0 Aug  9 14:01 1.py
 
 
 
 chmod 777 文件夹，只会修改文件夹的权限为777 ，不会修改里面文件的权限
 
 	
--R 会修改文件夹里面所有的文件、文件夹的权限（递归）
+	-R 会修改文件夹里面所有的文件、文件夹的权限（递归）
 
+ssh
 
+A.安装ssh服务器
 	
+	sudo apt-get install openssh-server
+
+B.远程登陆
+
+	ssh 用户名@IP
+使用ssh访问，如访问出现错误。可查看是否有该文件 ～/.ssh/known_ssh 尝试删除该文件解决。	
+
+远程拷贝文件,scp -r 的常用方法：
+
+1.使用该命令的前提条件要求目标主机已经成功安装openssh-server
+
+	如没有安装使用 sudo apt-get install openssh-server 来安装
+2.使用格式：
+
+	scp -r 目标用户名@目标主机IP地址：/目标文件的绝对路径  /保存到本机的绝对/相对路径
+
+举例：
+	scp -r hzy@192.168.1.100:/home/QQ_dir/ ./mytest/lisi
+
+在后续会提示输入“yes”此时，只能输“yes”而不能简单输入“Y”
+拷贝单个文件可以不加 -r参数，拷贝目录必须要加。
+
+本地文件复制到远程：
+
+	scp FileName RemoteUserName@RemoteHostIp:RemoteFile
+	scp FileName RemoteHostIp:RemoteFolder
+	scp FileName RemoteHostIp:RemoteFile
+本地目录复制到远程：
+
+	scp -r FolderName RemoteUserName@RemoteHostIp:RemoteFolder
+	scp -r FolderName RemoteHostIp:RemoteFolder
+远程文件复制到本地：
+
+	scp RemoteUserName@RemoteHostIp:RemoteFile FileName
+	scp RemoteHostIp:RemoteFolder FileName
+	scp RemoteHostIp:RemoteFile FileName
+远程目录复制到本地：
+
+	scp -r RemoteUserName@RemoteHostIp:RemoteFolder FolderName
+	scp -r RemoteHostIp:RemoteFolder FolderName
